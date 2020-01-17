@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+   
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	  <link rel="stylesheet" href="./index.css" type="text/css">
+	  
+  </head>
+  <body>
+	  
+    <div id="box"></div>
+    
+	<script type="text/babel">
+		
+class TodoList extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.state ={
+            items: [],
+        };
+        
+        this.addItem = this.addItem.bind(this);
+    }
+    
+    addItem(e) {
+        
+        {
+           var itemArray = this.state.items;
+            
+            if(this._inputElement!== "") {
+                itemArray.unshift({
+                    text: this._inputElement.value,
+                    key: Date.npw(),
+                });
+                
+                this.setState({
+                    items: itemArray
+                });
+                
+                this._inputElement.value = " ";
+            }
+            
+            console.log(itemArray);
+        
+            e.preventDefault();
+        }
+    }
+    
+    
+    render() {
+        return (
+            <div>
+                    <form onSubmit={this.addItem}>
+                        <input ref={(a => this._inputElement = a)}  plaseholder="Input" value="input item"></input>
+                        <button type="submit">Add</button>
+                    </form>
+                    
+                    <todoItems entries={this.state.items}/>
+                
+            </div>
+        );
+    }
+
+};
+
+
+class todoItems extends React.Component {
+   
+    constructor(props) {
+        super(props);
+        
+        this.createTasks = this.createTasks.bind(this);
+    }
+    
+    createTasks(item) {
+        return <li key={item.key}>{item.text}</li>
+    }
+    
+    
+    render() {
+        
+        var todoEntries = this.props.entries;
+        var listItems = todoEntries.map(this.createTasks);
+        
+        return (
+            <ul className="theList">
+                {listItems}  
+            </ul>    
+        );
+    }
+};
+
+
+ReactDOM.render(
+	<div>
+        <TodoList/> 
+	</div>,
+       document.querySelector("#box"),
+);	
+    </script>
+	  
+   
+  </body>
+</html>
