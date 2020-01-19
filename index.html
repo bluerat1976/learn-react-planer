@@ -51,7 +51,6 @@ class TodoList extends React.Component {
         }
     }
     
-    
     render() {
         return (
             <div>
@@ -61,11 +60,9 @@ class TodoList extends React.Component {
                     </form>
                     
                     <todoItems entries={this.state.items}/>
-                
             </div>
         );
     }
-
 };
 
 
@@ -81,7 +78,6 @@ class todoItems extends React.Component {
         return <li key={item.key}>{item.text}</li>
     }
     
-    
     render() {
         
         var todoEntries = this.props.entries;
@@ -95,7 +91,6 @@ class todoItems extends React.Component {
     }
 };
 
-
 ReactDOM.render(
 	<div>
         <TodoList/> 
@@ -104,6 +99,5 @@ ReactDOM.render(
 );	
     </script>
 	  
-   
   </body>
 </html>
